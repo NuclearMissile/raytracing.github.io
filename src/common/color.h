@@ -38,5 +38,12 @@ void write_color(std::ostream &out, color pixel_color, int samples_per_pixel) {
         << static_cast<int>(256 * clamp(b, 0.0, 0.999)) << '\n';
 }
 
+unsigned char convert(double color, int samples_per_pixel) {
+    if (color != color)
+        color = 0.0;
+    color = 256 * clamp(sqrt(color / samples_per_pixel), 0.0, 0.999);
+    return (unsigned char)color;
+}
+
 
 #endif
